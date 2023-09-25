@@ -21,7 +21,6 @@ Now there are a lot of interesting alternative approaches to how Cinematch works
 
 7. Model Evaluation: Assess the performance of the recommendation models using appropriate evaluation metrics, such as Mean Absolute Error (MAE) or Root Mean Squared Error (RMSE).
 
-8. Deployment: Deploy the recommendation system as a user-friendly application or API that allows users to receive personalized movie suggestions.
 
 # Expected Outcome:
 
@@ -34,4 +33,3 @@ By the end of this project, you will have built a functional Netflix-style movie
 3. Collaborative filtering and content-based filtering
 4. Model evaluation and selection
 5. Hybrid recommendation system development
-6. Deployment of a machine learning model as an application or API
