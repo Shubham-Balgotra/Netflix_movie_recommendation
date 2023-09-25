@@ -21,6 +21,11 @@ Now there are a lot of interesting alternative approaches to how Cinematch works
 
 7. Model Evaluation: Assess the performance of the recommendation models using appropriate evaluation metrics, such as Mean Absolute Error (MAE) or Root Mean Squared Error (RMSE).
 
+# Visualization:
+1. Barplot: A bar chart is used to display the distribution of ratings in the dataset.
+2. Countplot: A count plot is used to display the number of ratings per day and per month.
+3. Countplot: Plot showing maximum ratings according to days of week. 
+4. Kdeplot: To show the Probability Density Function (PDFs) and Cumulative Distribution Functions (CDFs) of ratings as per users.
 
 # Expected Outcome:
 
