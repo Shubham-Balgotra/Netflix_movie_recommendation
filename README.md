@@ -28,6 +28,22 @@ Now there are a lot of interesting alternative approaches to how Cinematch works
 3. Countplot: Plot showing maximum ratings according to days of week. 
 4. Kdeplot: To show the Probability Density Function (PDFs) and Cumulative Distribution Functions (CDFs) of ratings as per users.
 
+# Result/Output:
+
+Input query: 'Modern Vampires'
+Recommended movies: Top 10 movies similar to 'Modern Vampires'
+Movie_release_year	   Movie_title       Movie_id		
+4667                  	1996.0	         Vampirella
+15237	                  2001.0         	 The Forsaken
+67	                    1997.0	         Vampire Journals
+16279	                  2002.0           Vampires: Los Muertos
+13873	                  2001.0	         The Breed
+4173                  	1998.0         	 From Dusk Till Dawn 2: Texas Blood Money
+1900                  	1997.0	         Club Vampire
+13962                 	2001.0	         Dracula: The Dark Prince
+15867	                  2003.0	         Dracula II: Ascension
+3496	                  1998.0	         Vampires
+ 
 # Expected Outcome:
 
 By the end of this project, you will have built a functional Netflix-style movie recommendation system that provides users with tailored movie suggestions based on their watching history and preferences. You will gain hands-on experience in data preprocessing, recommendation algorithms, and model evaluation.
