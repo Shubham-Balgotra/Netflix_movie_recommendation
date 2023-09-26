@@ -34,18 +34,18 @@ Input query: 'Modern Vampires'
 
 Recommended movies: Top 10 movies similar to 'Modern Vampires'
 
-| Movie_release_year | Movie_title                 | Movie_id                       |
+| Movie_id           | Movie_release_year          | Movie_title                    |
 |--------------------|-----------------------------|--------------------------------|
-| 4667               | 1996.0                      | Vampirella                     |
-| 15237              | 2001.0                      | The Forsaken                   |
-| 67                 | 1997.0                      | Vampire Journals               |
-| 16279              | 2002.0                      | Vampires: Los Muertos          |
-| 13873              | 2001.0                      | The Breed                      |
-| 4173               | 1998.0                      | From Dusk Till Dawn 2: Texas Blood Money |
-| 1900               | 1997.0                      | Club Vampire                   |
-| 13962              | 2001.0                      | Dracula: The Dark Prince       |
-| 15867              | 2003.0                      | Dracula II: Ascension          |
-| 3496               | 1998.0                      | Vampires                       |
+| 4667               | 1996                        | Vampirella                     |
+| 15237              | 2001                        | The Forsaken                   |
+| 67                 | 1997                        | Vampire Journals               |
+| 16279              | 2002                        | Vampires: Los Muertos          |
+| 13873              | 2001                        | The Breed                      |
+| 4173               | 1998                        | From Dusk Till Dawn 2: Texas Blood Money |
+| 1900               | 1997                        | Club Vampire                   |
+| 13962              | 2001                        | Dracula: The Dark Prince       |
+| 15867              | 2003                        | Dracula II: Ascension          |
+| 3496               | 1998                        | Vampires                       |
  
 # Expected Outcome:
 
