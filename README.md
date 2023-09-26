@@ -31,7 +31,9 @@ Now there are a lot of interesting alternative approaches to how Cinematch works
 # Result/Output:
 
 Input query: 'Modern Vampires'
+
 Recommended movies: Top 10 movies similar to 'Modern Vampires'
+
 | Movie_release_year | Movie_title                 | Movie_id                       |
 |--------------------|-----------------------------|--------------------------------|
 | 4667               | 1996.0                      | Vampirella                     |
