@@ -1,0 +1,85 @@
+import numpy as np
+import pandas as pd
+from scipy import sparse
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.decomposition import TruncatedSVD
+from surprise import Dataset, Reader, BaselineOnly, KNNBaseline, SVD, SVDpp
+import xgboost as xgb
+import pickle
+import os
+
+# Mount Google Drive (if using Colab)
+from google.colab import drive
+drive.mount('/content/drive')
+
+# Set data path
+DATA_PATH = '/content/drive/My Drive/netflix/'
+
+# --- 1. Load & Preprocess Data ---
+def load_and_preprocess(data_path):
+    print("Loading and preprocessing data...")
+    df = pd.read_csv(data_path + 'netflix_data.csv', names=['movie_id', 'user_id', 'rating', 'date'])
+    df = df.dropna().drop_duplicates()
+    df = df.sort_values('date')
+    return df
+
+df = load_and_preprocess(DATA_PATH)
+
+# --- 2. Feature Engineering ---
+def compute_features(df):
+    print("Computing features...")
+    
+    # Create sparse matrix (user x movie)
+    sparse_matrix = sparse.csr_matrix((df['rating'], (df['user_id'], df['movie_id'])))
+    
+    # Global average rating
+    global_avg = sparse_matrix.sum() / sparse_matrix.count_nonzero()
+    
+    # User/movie averages
+    user_avg = dict(zip(np.unique(df['user_id']), 
+                     np.array(sparse_matrix.sum(axis=1).ravel() / np.diff(sparse_matrix.indptr)))
+    movie_avg = dict(zip(np.unique(df['movie_id']), 
+                      np.array(sparse_matrix.sum(axis=0).ravel() / np.diff(sparse_matrix.tocsc().indptr)))
+    
+    # SVD for dimensionality reduction (optional)
+    svd = TruncatedSVD(n_components=50)
+    svd_features = svd.fit_transform(sparse_matrix)
+    
+    return {
+        'sparse_matrix': sparse_matrix,
+        'global_avg': global_avg,
+        'user_avg': user_avg,
+        'movie_avg': movie_avg,
+        'svd_features': svd_features
+    }
+
+features = compute_features(df)
+
+# --- 3. Train Best Model (XGBoost) ---
+def prepare_xgb_data(df, features):
+    print("Preparing XGBoost input...")
+    
+    # Example: Add features like user_avg, movie_avg, etc.
+    X = pd.DataFrame({
+        'user_id': df['user_id'],
+        'movie_id': df['movie_id'],
+        'global_avg': features['global_avg'],
+        'user_avg': df['user_id'].map(features['user_avg']),
+        'movie_avg': df['movie_id'].map(features['movie_avg']),
+        # Add more features (similar users/movies, SVD features, etc.)
+    })
+    y = df['rating']
+    return X, y
+
+X, y = prepare_xgb_data(df, features)
+
+# Train XGBoost
+model = xgb.XGBRegressor(n_estimators=100, random_state=42)
+model.fit(X, y)
+
+# --- 4. Save Model for Production ---
+MODEL_PATH = DATA_PATH + 'netflix_recommender_xgb.pkl'
+with open(MODEL_PATH, 'wb') as f:
+    pickle.dump(model, f)
+
+print(f"Model saved to {MODEL_PATH}")
