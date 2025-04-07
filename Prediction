@@ -1,0 +1,9 @@
+def predict_rating(user_id, movie_id, model, features):
+    input_data = pd.DataFrame({
+        'user_id': [user_id],
+        'movie_id': [movie_id],
+        'global_avg': [features['global_avg']],
+        'user_avg': [features['user_avg'].get(user_id, features['global_avg'])],
+        'movie_avg': [features['movie_avg'].get(movie_id, features['global_avg'])],
+    })
+    return model.predict(input_data)[0]
